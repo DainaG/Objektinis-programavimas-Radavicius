@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+ 
+//Compiler version g++ 6.3.0
+ 
+void IsUpper(vector <string> &arr, int size);
+void BubbleSort(vector<string> &names);
+void Swap (vector<string> &names, int j);
+ 
+int main()
+{
+    int size;
+    string temp;
+    cout << "Hello! This program will recieve a list \nof strings and order the proper names \n(those who start with a capital letter) \nin alphabetical order\n";
+    cout << "Please insert the size of the list\n";
+    cin >> size;
+    vector <string> arr;
+    for (int i = 0; i < size; i++){
+      cout << "Please insert a string\n";
+      cin >> temp;
+        arr.push_back(temp);
+    }
+    IsUpper(arr, size);
+}
+ 
+void IsUpper(vector <string> &arr, int size){
+    string c;
+    vector <string> names;
+    for (int i = 0; i < size; i++){
+        c = arr[i];
+        if (isupper(c[0]))
+            names.push_back(c);
+    }
+    BubbleSort(names);
+    for (int i = 0; i < size; i++)
+        cout << names[i] << " ";
+}
+ 
+void Swap (vector<string> &names, int j){
+    string t = names[j];
+    names[j] = names[j+1];
+    names[j+1] = t;
+}
+ 
+void BubbleSort(vector<string> &names){
+    bool S;
+    for (int i = 0; i < names.size()-1; i++){
+        S = false;
+        for (int j = 0; j < names.size()-i-1; j++){
+            if (names[j] > names[j+1]){
+                Swap(names, j);
+                S = true;
+            }
+        }
+        if (S == false)
+            break;
+    }
+}
